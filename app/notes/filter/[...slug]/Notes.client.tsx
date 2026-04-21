@@ -10,15 +10,11 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import css from './NotesPage.module.css';
-import { useParams } from 'next/navigation';
 
-export default function FilteredNotesClient() {
+export default function FilteredNotesClient({ tag }: { tag?: string }) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState('');
-
-  const slug = useParams().slug as string[] | undefined;
-  const tag = slug?.[0] === 'all' ? undefined : slug?.[0];
 
   const { data, error, isLoading, isSuccess } = useQuery({
     queryKey: ['notes', searchValue, currentPage, tag],

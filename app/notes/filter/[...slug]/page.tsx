@@ -25,7 +25,7 @@ export default async function NotesFilter({ params }: NotesFilterProps) {
   return (
     <div className={css.app}>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <FilteredNotesClient />
+        <FilteredNotesClient tag={tag} />
       </HydrationBoundary>
     </div>
   );
