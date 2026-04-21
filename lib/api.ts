@@ -1,5 +1,6 @@
 import axios from "axios"
 import type { NewNote, Note } from "../types/note";
+import { Category } from "@/types/category";
 
 
 const perPage = 12;
@@ -16,13 +17,15 @@ interface NoteSearch{
 
 
 
-export async function fetchNotes (searchQuery: string, pageNumber:number ):Promise<NoteSearch>{
+export async function fetchNotes (searchQuery: string, pageNumber:number, tag?:string):Promise<NoteSearch>{
     const   params= {
             page:  pageNumber ,
             search: searchQuery,
             perPage: perPage,
+            tag: tag,
         }
-    const {data} = await axios.get<NoteSearch>('/notes', {params})
+    const { data } = await axios.get<NoteSearch>('/notes', { params });
+    console.log("CATEGORY SENT:", tag);
    return data
 }
 
@@ -43,3 +46,4 @@ export async function fetchNoteById(id: Note['id']) {
     return data
     
 }
+
