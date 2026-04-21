@@ -6,7 +6,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import css from './NotesPage.module.css';
-import FilteredNotesClient from './FilteredNotes.Client';
+import FilteredNotesClient from './Notes.client';
 
 interface NotesFilterProps {
   params: Promise<{ slug: string[] }>;
